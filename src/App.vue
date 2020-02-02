@@ -41,7 +41,11 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://m.maoyan.com/ajax/movieOnInfoList?token=').then(res => {
+    // vue.config.js中，配置转发代理
+    // axios.get('http://m.maoyan.com/ajax/movieOnInfoList?token=').then(res => {
+    //   console.log(res)
+    // })
+    axios.get('/ajax/movieOnInfoList?token=').then(res => {
       console.log(res)
     })
   },
