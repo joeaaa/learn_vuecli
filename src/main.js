@@ -9,4 +9,12 @@ new Vue({
   router,
   store,
   render: h => h(App)
+  // data:{
+  //   datalist:[],
+  // },
+  // methods: {
+  //   handleClick(){
+  //     this.datalist
+  //   }
+  // },
 }).$mount('#app')

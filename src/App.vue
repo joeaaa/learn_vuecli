@@ -1,32 +1,62 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- 使用ref获取节点 -->
+    <input type="text" ref="mytext">
+    <button @click="handleAdd()">click me</button>
+    <ul>
+      <li v-for="data in datalist" :key="data">{{data}}</li>
+    </ul>
+    <!-- 引入navbar，sidebar，点击btn控制sidebar显示与否 -->
+    <navbar>
+      <!-- button通过slot插入到navbar.vue中 -->
+      <button @click="isShow=!isShow">navbar click</button>
+    </navbar>
+    <sidebar v-show="isShow"></sidebar>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// 引入navbar， sidebar
+import navbar from './components/NavBar'
+import sidebar from './components/SideBar'
 
-#nav {
-  padding: 30px;
+// 引入axios，读取url json
+import axios from 'axios'
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+// 注册为全局组件
+// import Vue from 'vue'
+// Vue.component('navbar', navbar)
+// Vue.component('sidebar', sidebar)
 
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  data () {
+    return {
+      datalist: ['a', 'b', 'c', 'd'],
+      isShow: false
     }
+  },
+  methods: {
+    handleAdd () {
+      this.datalist.push(this.$refs.mytext.value)
+    }
+  },
+  mounted () {
+    axios.get('http://m.maoyan.com/ajax/movieOnInfoList?token=').then(res => {
+      console.log(res)
+    })
+  },
+  components: {
+    navbar: navbar,
+    sidebar: sidebar
   }
 }
+</script>
+
+<style lang="scss">
+  ul {
+      list-style : none;
+    li {
+        background : yellow
+    }
+  }
 </style>
