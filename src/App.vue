@@ -31,10 +31,15 @@ export default {
 </script>
 
 <style lang="scss">
-  ul {
-      list-style : none;
-    li {
-        //background : yellow
-    }
+  // 全局样式
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    height: 100%;
+  }
+  li {
+    list-style: none;
   }
 </style>
