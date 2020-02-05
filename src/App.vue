@@ -11,19 +11,19 @@
 import tabbar from './components/TabBar'
 
 // 引入axios，读取url json
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data () {
   },
   methods: {
   },
-  mounted () {
-    // vue.config.js中，配置转发代理
-    axios.get('/ajax/movieOnInfoList?token=').then(res => {
-      console.log(res)
-    })
-  },
+  // mounted () {
+  //   // vue.config.js中，配置转发代理
+  //   axios.get('/ajax/movieOnInfoList?token=').then(res => {
+  //     console.log(res)
+  //   })
+  // },
   components: {
     tabbar: tabbar
   }
