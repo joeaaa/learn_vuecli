@@ -20,7 +20,13 @@ export default {
     // 处理页面跳转
     handlePageChange (id) {
       // 进行列表点击跳转
-      this.$router.push(`/detail/${id}`)
+      // this.$router.push(`/detail/${id}`)
+      // 使用命名路由跳转
+      this.$router.push({ name: 'nowPlayingDetail',
+        params: {
+          id: id
+        }
+      })
     }
   }
 }
