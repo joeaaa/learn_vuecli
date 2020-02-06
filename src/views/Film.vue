@@ -1,11 +1,17 @@
 <template>
   <div>
       <!-- 轮播图 -->
-      <swiper :key='slidelist.length'>
+      <!-- <swiper :key='slidelist.length'>
         <div class='swiper-slide' v-for='data in slidelist' :key='data.bannerId'>
           <img :src="data.imgUrl" />
         </div>
+      </swiper> -->
+      <swiper swiperId="swiper" effect="slide" :key='slidelist.length'>
+        <div class='swiper-slide' v-for='data in slidelist' :key='data.bannerId' slot="swiper-slot">
+          <img :src="data.imgUrl" />
+        </div>
       </swiper>
+
       <div>film-header</div>
       <hr>
       <div>
@@ -19,11 +25,11 @@
 </template>
 
 <script>
-// 引入views/Film/Swiper.vue
+// 引入封装的swiper
 import swiper from '@/views/Film/Swiper'
 import axios from 'axios'
 export default {
-  // 轮播图
+  // 轮播图列表
   data () {
     return {
       slidelist: []
@@ -40,7 +46,6 @@ export default {
         'X-Host': 'mall.cfg.common-banner'
       }
     }).then(res => {
-      console.log(res.data)
       this.slidelist = res.data.data
     })
   }
