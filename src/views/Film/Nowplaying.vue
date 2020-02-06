@@ -31,9 +31,9 @@ export default {
     // 使用卖座网数据
     // get请求带上header解决跨域
     axios({
-      url: 'https://m.maizuo.com/gateway?cityId=110100&pageNum=1&pageSize=10&type=1&k=9347823',
+      url: 'https://m.maizuo.com/gateway?cityId=310100&pageNum=1&pageSize=10&type=1&k=2406523',
       headers: {
-        'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"1580884372519691043891","bc":"110100"}',
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"1580884372519691043891","bc":"310100"}',
         'X-Host': 'mall.film-ticket.film.list'
       }
     }).then(res => {
