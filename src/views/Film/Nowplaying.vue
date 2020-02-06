@@ -4,14 +4,22 @@
         <hr>
         <ul>
             <li v-for='data in datalist' :key='data.filmID' @click='handlePageChange(data)'>
-              {{data.name}}
-              </li>
+              <img :src="data.poster" alt="data.name">
+              <h3>{{data.name}}</h3>
+              <p>评分：{{data.grade}}</p>
+              <p>主演：{{data.actors | actorFilter}}</p>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Vue from 'vue'
+Vue.filter('actorFilter', function (data) {
+  var actorlist = data.map(item => item.name)
+  return actorlist.join(' ')
+})
 export default {
   data () {
     return {
@@ -48,3 +56,15 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  ul {
+    li {
+      padding: 10px;
+      overflow: hidden;
+      img {
+        float: left;
+        width: 100px;
+      }
+    }
+  }
+</style>
