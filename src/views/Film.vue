@@ -46,6 +46,10 @@ export default {
     // 页面下滚导航固定
     window.onscroll = this.handleScroll
   },
+  beforeDestroy() {
+    // 页面销毁前取消监听
+    window.onscroll = null
+  },
   methods: {
     // 页面下滚导航固定方法
     handleScroll () {
