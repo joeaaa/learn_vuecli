@@ -1,23 +1,14 @@
 <template>
   <div>
-      <!-- 轮播图 -->
-      <!-- <swiper :key='slidelist.length'>
-        <div class='swiper-slide' v-for='data in slidelist' :key='data.bannerId'>
-          <img :src="data.imgUrl" />
-        </div>
-      </swiper> -->
-      <swiper swiperId="swiper" effect="slide" :key='slidelist.length'>
+      <swiper swiperId="swiper" effect="slide" :key='slidelist.length' ref="myswiper">
         <div class='swiper-slide' v-for='data in slidelist' :key='data.bannerId' slot="swiper-slot">
           <img :src="data.imgUrl" />
         </div>
       </swiper>
-
-      <div>film-header</div>
+      <filmheader :class="isFixed ? 'fixed':''"></filmheader>
       <hr>
       <div>
         <ul>
-          <!-- todo -->
-          film-nav
           <router-view></router-view>
         </ul>
       </div>
@@ -27,16 +18,20 @@
 <script>
 // 引入封装的swiper
 import swiper from '@/views/Film/Swiper'
+// 引入film-header
+import filmheader from '@/views/Film/Filmheader'
 import axios from 'axios'
 export default {
   // 轮播图列表
   data () {
     return {
-      slidelist: []
+      slidelist: [],
+      isFixed: false
     }
   },
   components: {
-    swiper
+    swiper,
+    filmheader
   },
   mounted () {
     axios({
@@ -48,6 +43,18 @@ export default {
     }).then(res => {
       this.slidelist = res.data.data
     })
+    // 页面下滚导航固定
+    window.onscroll = this.handleScroll
+  },
+  methods: {
+    // 页面下滚导航固定方法
+    handleScroll () {
+      if (document.documentElement.scrollTop >= this.$refs.myswiper.$el.offsetHeight) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
+    }
   }
 }
 </script>
